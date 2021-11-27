@@ -38,7 +38,8 @@ exports.handler = async (event, context,)=>{
             statusCode: 200,
             body: `new note contains ${note}`}
 */
-    }catch(err){
+    }
+	catch(err){
         
         return {
             statusCode: 200,
@@ -47,4 +48,3 @@ exports.handler = async (event, context,)=>{
     }
 
 };
-  
