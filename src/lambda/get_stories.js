@@ -5,6 +5,7 @@ import * as admin from 'firebase-admin';
 var serviceAccount = {
     //.....
 }
+var logs = [];
 
    const firebaseConfig = {
     apiKey: "AIzaSyCpsac9VVt5uE0AF2MVk8kSVMAWFcewFfM",
@@ -20,10 +21,22 @@ var serviceAccount = {
 const app = admin.initializeApp(
 firebaseConfig
 );
+if( app === undefined ){
+logs.push('initializeApp is undefined');
+}
+else{logs.push('initializeApp is ok');}
 exports.handler = async (event, context)=>{
-
+logs.push('reached function call');
+	
         let ref = await app.database().ref("/stories/");
-         ref.on("value", (snapshot) => {
+	if(ref === undefined){logs.push('ref is undefined');
+          return{
+            statusCode: 200,
+            body: logs
+	}
+	}
+	else{
+	ref.on("value", (snapshot) => {
 	 console.log("got inside the firebase snapshot callback!");
          const storiesArray = snapshot.val();
           return{
@@ -31,9 +44,7 @@ exports.handler = async (event, context)=>{
             body: storiesArray
           }
 	});
-
+}
 //if the code above hasnt run
 //      return{statusCode: 200,body: 'didnt get the data!'}
-
-
 };
