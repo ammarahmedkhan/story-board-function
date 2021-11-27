@@ -17,20 +17,22 @@ var serviceAccount = {
     measurementId: "G-PYBLC4DJX2"
   };
   
-const app = admin.initializeApp(firebaseConfig);
-exports.handler = async (event, context)=>{
+const app = admin.initializeApp(
+firebaseConfig
+);
+exports.handler = async (event, context,)=>{
 
         let ref = await app.database().ref("/stories/");
          ref.on("value", (snapshot) => {
          const storiesArray = snapshot.val();
-          return {
+          return{
             statusCode: 200,
             body: storiesArray
           }
-	}
+	});
 
 //if the code above hasnt run
-      return {
+      return{
             statusCode: 200,
             body: 'didnt get the data!'
           }
