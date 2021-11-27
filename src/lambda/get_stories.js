@@ -17,13 +17,9 @@ var serviceAccount = {
     measurementId: "G-PYBLC4DJX2"
   };
   
-const app = admin.initializeApp(
-firebaseConfig
-);
+const app = admin.initializeApp(firebaseConfig);
+exports.handler = async (event, context)=>{
 
-exports.handler = async (event, context,)=>{
-    
-    try{
         let ref = await app.database().ref("/stories/");
          ref.on("value", (snapshot) => {
          const storiesArray = snapshot.val();
@@ -31,20 +27,13 @@ exports.handler = async (event, context,)=>{
             statusCode: 200,
             body: storiesArray
           }
-}
-        
-/*
-                return {
+	}
+
+//if the code above hasnt run
+      return {
             statusCode: 200,
-            body: `new note contains ${note}`}
-*/
-    }
-	catch(err){
-        
-        return {
-            statusCode: 200,
-            body: `err ${err.message}`
-        }
-    }
+            body: 'didnt get the data!'
+          }
+
 
 };
