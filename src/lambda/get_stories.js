@@ -16,11 +16,11 @@ exports.handler = async (event, context) => {
       })
     }
   }
-  console.log("data found:",response);
+  console.log("data found:",response.text());
   return {
     statusCode: 200,
     body: JSON.stringify({
-      data: response
+      data: response.text()
     })
   }
 }
