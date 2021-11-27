@@ -20,10 +20,11 @@ var serviceAccount = {
 const app = admin.initializeApp(
 firebaseConfig
 );
-exports.handler = async (event, context,)=>{
+exports.handler = async (event, context)=>{
 
         let ref = await app.database().ref("/stories/");
          ref.on("value", (snapshot) => {
+	 console.log("got inside the firebase snapshot callback!");
          const storiesArray = snapshot.val();
           return{
             statusCode: 200,
@@ -32,10 +33,7 @@ exports.handler = async (event, context,)=>{
 	});
 
 //if the code above hasnt run
-      return{
-            statusCode: 200,
-            body: 'didnt get the data!'
-          }
+//      return{statusCode: 200,body: 'didnt get the data!'}
 
 
 };
