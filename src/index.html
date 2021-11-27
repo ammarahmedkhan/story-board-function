@@ -13,6 +13,25 @@
       <a href="https://www.netlify.com/docs/functions">Netlify’s Lambda Functions</a>. But I sort of went ahead and
       removed the flashy details to opt for a more minimalist-looking site.
     </p>
+    
+    <article>
+      <h2>Hello, World!</h2>
+      <p>The inevitable Hello World example.</p>
+      <pre class="language-js"><code><%= require('html-loader!./lambda/hello.js') %></code></pre>
+      <h3>Try it out</h3>
+      <p><a href="/.netlify/functions/hello">Say hello!</a></p>
+    </article>
+
+      <article>
+      <h2>Firebase Fetch</h2>
+      <p>Firebase Fetch</p>
+      <pre class="language-js"><code><%= require('html-loader!./lambda/get_stories.js') %></code></pre>
+      <h3>Try it out</h3>
+      <p><a href="/.netlify/functions/get_stories">Firebase Fetch!</a></p>
+    </article>
+
+    
+    
 <!--
     <p>
       You can browse the code for this site on
